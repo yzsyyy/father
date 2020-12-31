@@ -145,7 +145,7 @@ export default function(opts: IGetRollupConfigOpts): RollupOptions[] {
   function getPlugins(opts = {} as { minCSS: boolean; }) {
     const { minCSS } = opts;
     return [
-      url(),
+      (extraRollupPlugins.find(pluginCb => pluginCb.name === "url") ? [] : [url()]),
       svgr(),
       postcss({
         extract: extractCSS,
